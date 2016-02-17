@@ -7,4 +7,9 @@
   </parent>
   <groupId>br.com.ensalamento.controller</groupId>
   <artifactId>controller</artifactId>
+=======
+  <groupId>br.com.controller</groupId>
+  <artifactId>controller</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+>>>>>>> dev/dev
 </project>

@@ -1,0 +1,7 @@
+/target/
+/.settings/*
+/.metadata/*
+*.class
+.classpath
+.project
+.tern-project

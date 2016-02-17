@@ -7,4 +7,9 @@
   </parent>
   <artifactId>web</artifactId>
   <packaging>war</packaging>
+=======
+  <groupId>br.com.web</groupId>
+  <artifactId>web</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+>>>>>>> dev/dev
 </project>
