@@ -1,6 +1,6 @@
-/target/
-/.settings/*
-/.metadata/*
+*/target/
+*/.settings/*
+*/.metadata/*
 *.class
 .classpath
 .project
