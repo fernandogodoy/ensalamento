@@ -1,30 +1,31 @@
 package br.ensalamento.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
-public class Turma implements Serializable {
+public class DisponibilidadeProfessor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_TURMA")
+	@Column(name = "ID_DISPONIBILIDADE")
 	private Long id;
 
-	@Column(name = "DESCRICAO")
-	private String descricao;
+	@OneToOne
+	private Professor professor;
 
-	@OneToMany(mappedBy = "turma", targetEntity = Curso.class)
-	private List<Curso> cursos = new ArrayList<Curso>();
+	@Enumerated(EnumType.STRING)
+	@Column(name = "DIA")
+	private DiasSemana dia;
 
 }

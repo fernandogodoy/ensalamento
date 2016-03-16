@@ -1,26 +1,28 @@
 package br.ensalamento.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Professor {
+public class ProfessorMateria implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PROFESSOR")
+	@Column(name = "ID_PROFESSOR_MATERIA")
 	private Long id;
 
-	@Column(name = "NOME")
-	private String nome;
+	@ManyToOne
+	private Professor professor;
 
-	@Column(name = "CPF")
-	private String cpf;
-
-	@Column(name = "RG")
-	private String RG;
+	@ManyToOne
+	private Materia materia;
 
 }

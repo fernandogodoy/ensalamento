@@ -12,19 +12,19 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Turma implements Serializable {
+public class MateriaCurso implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_TURMA")
+	@Column(name = "ID_MATERIA_CURSO")
 	private Long id;
 
-	@Column(name = "DESCRICAO")
-	private String descricao;
-
-	@OneToMany(mappedBy = "turma", targetEntity = Curso.class)
+	@OneToMany(mappedBy = "materiacurso", targetEntity = Curso.class)
 	private List<Curso> cursos = new ArrayList<Curso>();
+
+	@OneToMany(mappedBy = "materiacurso", targetEntity = Materia.class)
+	private List<Materia> materias = new ArrayList<Materia>();
 
 }

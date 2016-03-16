@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,22 +15,18 @@ public class Curso implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_curso", nullable = false)
-	private Long idCurso;
-	@Column(name = "nome")
+	@Column(name = "ID_CURSO")
+	private Long id;
+
+	@Column(name = "NOME")
 	private String nome;
-	@ManyToOne
-	private Turma turma;
-		
-	public Long getIdCurso() {
-		return idCurso;
+
+	public Long getId() {
+		return id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
-	
-	public Turma getTurma() {
-		return turma;
-	}
+
 }

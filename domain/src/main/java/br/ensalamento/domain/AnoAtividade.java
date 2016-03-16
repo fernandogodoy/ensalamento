@@ -1,5 +1,7 @@
 package br.ensalamento.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,20 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Professor {
+public class AnoAtividade implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID_PROFESSOR")
+	@Column(name = "ID_ANO_ATIVIDADE")
 	private Long id;
 
-	@Column(name = "NOME")
-	private String nome;
+	@Column(name = "ANO")
+	private Integer ano;
 
-	@Column(name = "CPF")
-	private String cpf;
-
-	@Column(name = "RG")
-	private String RG;
+	@Column(name = "SEMESTRE")
+	private Integer semestre;
 
 }
