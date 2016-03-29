@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>br.com.ensalamento</groupId>
-		<artifactId>Ensalamento</artifactId>
+		<artifactId>ensalamento</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>controller</artifactId>
-
+	<name>controller</name>
 	<build>
 		<plugins>
 			<plugin>
