@@ -3,10 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>br.com.ensalamento</groupId>
-		<artifactId>Ensalamento</artifactId>
+		<artifactId>ensalamento</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
+	<name>domain</name>
 	<artifactId>domain</artifactId>
+	<packaging>jar</packaging>
 
 	<build>
 		<plugins>
@@ -18,13 +20,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-			</plugin>
 		</plugins>
 	</build>
-
 	<dependencies>
 		<!-- Hibernate -->
 		<dependency>
@@ -36,7 +33,5 @@
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 		</dependency>
-
 	</dependencies>
-
 </project>
