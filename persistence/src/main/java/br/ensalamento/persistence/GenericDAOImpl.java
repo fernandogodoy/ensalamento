@@ -6,13 +6,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-public abstract class GenericDAOImpl<K> implements GenericDAO<K> {
+public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
-	public GenericDAOImpl(Class<K> objeto) {
+	public GenericDAOImpl(Class<T> objeto) {
 		this.objeto = objeto;
 	}
 
-	private Class<K> objeto;
+	private Class<T> objeto;
 
 	@PersistenceContext(unitName = "EnsalamentoPU")
 	public EntityManager entityManager;
@@ -23,12 +23,12 @@ public abstract class GenericDAOImpl<K> implements GenericDAO<K> {
 	}
 
 	@Override
-	public K getById(Long id) {
+	public T getById(Long id) {
 		return entityManager.find(objeto, id);
 	}
 
 	@Override
-	public void salvar(K objeto) {
+	public void salvar(T objeto) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(objeto);
 		entityManager.getTransaction().commit();
@@ -36,14 +36,14 @@ public abstract class GenericDAOImpl<K> implements GenericDAO<K> {
 	}
 
 	@Override
-	public void update(K objeto) {
+	public void update(T objeto) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(objeto);
 		entityManager.getTransaction().commit();
 	}
 
 	@Override
-	public void excluir(K objeto) {
+	public void excluir(T objeto) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(objeto);
 		entityManager.getTransaction().commit();
@@ -56,8 +56,8 @@ public abstract class GenericDAOImpl<K> implements GenericDAO<K> {
 	}
 
 	@Override
-	public List<K> findAll() {
-		TypedQuery<K> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
+	public List<T> findAll() {
+		TypedQuery<T> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
 		return q.getResultList();
 	}
 

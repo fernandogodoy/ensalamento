@@ -4,20 +4,20 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-public interface GenericDAO<K> {
+public interface GenericDAO<T> {
 
-	K getById(Long id);
+	T getById(Long id);
 
-	void salvar(K objeto);
+	void salvar(T objeto);
 
-	void excluir(K objeto);
+	void excluir(T objeto);
 	
 	void excluir(Long id);
 	
-	void update(K objeto);
+	void update(T objeto);
 	
 	EntityManager getEntityManager();
 
-	List<K> findAll();
+	List<T> findAll();
 
 }
