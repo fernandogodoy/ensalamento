@@ -1,6 +1,8 @@
 package br.ensalamento.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Materia implements Serializable {
@@ -21,8 +24,16 @@ public class Materia implements Serializable {
 
 	@Column(name = "NOME")
 	private String nome;
+	
+	@OneToMany(mappedBy = "materia", targetEntity = MateriaCurso.class)
+	private List<MateriaCurso> materiasCursos = new ArrayList<MateriaCurso>();
 
 	@ManyToOne
-	private AnoAtividade anoAtividade; // FK
+	private AnoAtividade anoAtividade;
 
+	@ManyToOne
+	private Grade grade;
+	
+	@ManyToOne
+	private MateriaCurso materiaCurso;
 }

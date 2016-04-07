@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Professor {
@@ -22,5 +23,8 @@ public class Professor {
 
 	@Column(name = "RG")
 	private String RG;
+	
+	@ManyToOne
+	private Grade grade;
 
 }

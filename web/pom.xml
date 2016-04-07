@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>br.com.ensalamento</groupId>
-		<artifactId>Ensalamento</artifactId>
+		<artifactId>ensalamento</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>web</artifactId>
