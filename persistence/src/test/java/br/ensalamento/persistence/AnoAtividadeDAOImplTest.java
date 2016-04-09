@@ -10,8 +10,8 @@ public class AnoAtividadeDAOImplTest {
 	@Ignore
 	public void salvar() {
 		AnoAtividade anoAtividade = new AnoAtividade();
-		anoAtividade.setAno(2016);
-		anoAtividade.setSemestre(1);
+//		anoAtividade.setAno(2016);
+//		anoAtividade.setSemestre(1);
 		
 		AnoAtividadeDAOImpl anoAtividadeDAOImpl = new AnoAtividadeDAOImpl();
 		anoAtividadeDAOImpl.salvar(anoAtividade);

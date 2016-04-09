@@ -24,7 +24,7 @@ NOME varchar(255)
 
 create table TURMA(
 ID_TURMA integer not null primary key,
-ID_CURSO integer references CURSO (id_curso),
+ID_CURSO integer references CURSO (ID_CURSO),
 DESCRICAO varchar(255)
 );
 
