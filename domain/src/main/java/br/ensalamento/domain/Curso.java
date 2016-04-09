@@ -24,10 +24,10 @@ public class Curso implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 	
-	@OneToMany(mappedBy = "curso", targetEntity = MateriaCurso.class)
+	@OneToMany(mappedBy = "curso", targetEntity = MateriaCurso.class, orphanRemoval=true)
 	private List<MateriaCurso> materiasCursos = new ArrayList<MateriaCurso>();
 	
-	@OneToMany(mappedBy = "curso", targetEntity = Turma.class)
+	@OneToMany(mappedBy = "curso", targetEntity = Turma.class, orphanRemoval=true)
 	private List<Turma> turmas = new ArrayList<Turma>();
 	
 }

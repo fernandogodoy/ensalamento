@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -20,9 +21,11 @@ public class MateriaCurso implements Serializable {
 	private Long id;
 
 	@ManyToOne
+	@JoinColumn(name="ID_CURSO")
 	private Curso curso;
 	
 	@ManyToOne
+	@JoinColumn(name="ID_MATERIA")
 	private Materia materia;
 
 }

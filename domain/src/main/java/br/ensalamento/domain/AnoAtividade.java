@@ -27,7 +27,7 @@ public class AnoAtividade implements Serializable {
 	@Column(name = "SEMESTRE")
 	private Integer semestre;
 	
-	@OneToMany(mappedBy = "anoAtividade", targetEntity = Materia.class)
+	@OneToMany(mappedBy = "anoAtividade", targetEntity = Materia.class, orphanRemoval=true)
     private List<Materia> materias = new ArrayList<Materia>();
 
 }
