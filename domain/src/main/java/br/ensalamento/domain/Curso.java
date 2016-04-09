@@ -9,7 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,15 +27,7 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso", targetEntity = MateriaCurso.class)
 	private List<MateriaCurso> materiasCursos = new ArrayList<MateriaCurso>();
 	
-	@ManyToOne
-	private Turma turma;
+	@OneToMany(mappedBy = "curso", targetEntity = Turma.class)
+	private List<Turma> turmas = new ArrayList<Turma>();
 	
-	public Long getId() {
-		return id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
 }

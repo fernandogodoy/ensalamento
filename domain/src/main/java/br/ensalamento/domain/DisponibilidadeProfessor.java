@@ -21,11 +21,11 @@ public class DisponibilidadeProfessor implements Serializable {
 	@Column(name = "ID_DISPONIBILIDADE")
 	private Long id;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "DIA_SEMANA")
+	private DiasSemana dia;
+	
 	@OneToOne
 	private Professor professor;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name = "DIA")
-	private DiasSemana dia;
 
 }

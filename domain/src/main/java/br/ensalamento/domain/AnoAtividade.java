@@ -30,28 +30,4 @@ public class AnoAtividade implements Serializable {
 	@OneToMany(mappedBy = "anoAtividade", targetEntity = Materia.class)
     private List<Materia> materias = new ArrayList<Materia>();
 
-	public Integer getAno() {
-		return ano;
-	}
-
-	public Integer getSemestre() {
-		return semestre;
-	}
-
-	public List<Materia> getMaterias() {
-		return materias;
-	}
-
-	public void setAno(Integer ano) {
-		this.ano = ano;
-	}
-
-	public void setSemestre(Integer semestre) {
-		this.semestre = semestre;
-	}
-
-	public void setMaterias(List<Materia> materias) {
-		this.materias = materias;
-	}
-
 }

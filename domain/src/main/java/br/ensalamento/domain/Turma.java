@@ -25,9 +25,9 @@ public class Turma implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@OneToMany(mappedBy = "turma", targetEntity = Curso.class)
-	private List<Curso> cursos = new ArrayList<Curso>();
-
 	@ManyToOne
-	private Grade grade;
+	private Curso curso;
+
+	@OneToMany(mappedBy = "turma", targetEntity = Grade.class)
+	private List<Grade> grades = new ArrayList<Grade>();
 }

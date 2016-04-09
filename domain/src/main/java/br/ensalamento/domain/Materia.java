@@ -25,15 +25,16 @@ public class Materia implements Serializable {
 	@Column(name = "NOME")
 	private String nome;
 	
-	@OneToMany(mappedBy = "materia", targetEntity = MateriaCurso.class)
-	private List<MateriaCurso> materiasCursos = new ArrayList<MateriaCurso>();
-
 	@ManyToOne
 	private AnoAtividade anoAtividade;
 
-	@ManyToOne
-	private Grade grade;
+	@OneToMany(mappedBy = "materia", targetEntity = MateriaCurso.class)
+	private List<MateriaCurso> materiasCursos = new ArrayList<MateriaCurso>();
+
+	@OneToMany(mappedBy = "materia", targetEntity = Grade.class)
+	private List<Grade> grades = new ArrayList<Grade>();
 	
-	@ManyToOne
-	private MateriaCurso materiaCurso;
+	@OneToMany(mappedBy = "materia", targetEntity = ProfessorMateria.class)
+	private List<ProfessorMateria> professoresMaterias = new ArrayList<ProfessorMateria>();
+
 }
