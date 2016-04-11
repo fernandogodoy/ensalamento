@@ -29,7 +29,7 @@ public class Professor {
 	@Column(name = "RG", length = 15)
 	private String rg;
 	
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
 	private DisponibilidadeProfessor disponibilidadeProfessor;
 	
 	@OneToMany(mappedBy = "professor", targetEntity = Grade.class, orphanRemoval=true)
