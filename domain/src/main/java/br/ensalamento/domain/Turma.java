@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -24,7 +26,10 @@ public class Turma implements Serializable {
 	@Column(name = "DESCRICAO")
 	private String descricao;
 
-	@OneToMany(mappedBy = "turma", targetEntity = Curso.class)
-	private List<Curso> cursos = new ArrayList<Curso>();
+	@ManyToOne
+	@JoinColumn(name="ID_CURSO")
+	private Curso curso;
 
+	@OneToMany(mappedBy = "turma", targetEntity = Grade.class, orphanRemoval=true)
+	private List<Grade> grades = new ArrayList<Grade>();
 }

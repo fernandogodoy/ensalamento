@@ -1,12 +1,15 @@
 package br.ensalamento.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AnoAtividade implements Serializable {
@@ -23,5 +26,8 @@ public class AnoAtividade implements Serializable {
 
 	@Column(name = "SEMESTRE")
 	private Integer semestre;
+	
+	@OneToMany(mappedBy = "anoAtividade", targetEntity = Materia.class, orphanRemoval=true)
+    private List<Materia> materias = new ArrayList<Materia>();
 
 }
