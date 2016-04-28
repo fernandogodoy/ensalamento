@@ -1,4 +1,6 @@
-# Ensalamento   https://travis-ci.org/fernandogodoy/ensalamento.svg?branch=master 
+# Ensalamento   
+
+https://travis-ci.org/fernandogodoy/ensalamento.svg?branch=developer 
 
 <p> Este projeto está em desenvolvimento pelo alunos da Faculdade Alvorada Maringa.</p>
 <br/>
