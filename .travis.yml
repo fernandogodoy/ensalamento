@@ -1,8 +1,8 @@
-+language: java
- +jdk:
- +  - openjdk7
- +  notifications:
- +  email:
- +    recipients:
- +      - fernandogodoy18@gmail.com
- +    on_success: always
+language: java
+jdk:
+  - openjdk7
+  notifications:
+  email:
+    recipients:
+      - fernandogodoy18@gmail.com
+    on_success: always
