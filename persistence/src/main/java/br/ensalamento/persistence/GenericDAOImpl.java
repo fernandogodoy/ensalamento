@@ -14,7 +14,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	private Class<T> objeto;
 
-	@PersistenceContext(unitName = "EnsalamentoPU")
+	@PersistenceContext
 	public EntityManager entityManager;
 
 	@Override
