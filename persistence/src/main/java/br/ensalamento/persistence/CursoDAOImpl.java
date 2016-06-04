@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import br.ensalamento.domain.Curso;
 
+@Repository
 public class CursoDAOImpl extends GenericDAOImpl<Curso> implements CursoDAO {
 
 	public CursoDAOImpl() {
