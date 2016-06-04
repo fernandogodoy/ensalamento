@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+    http://www.springframework.org/schema/beans 
+    http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+    http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-4.2.xsd 
+    http://www.springframework.org/schema/context 
+    http://www.springframework.org/schema/context/spring-context-4.2.xsd
+    http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="br.ensalamento" />
+
+	<!-- Add Transaction support -->
+	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="emf" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
+		</property>
+	</bean>
+
+	<!-- Add JPA support -->
+	<bean id="emf"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+		destroy-method="destroy">
+		<property name="persistenceUnitName" value="aulaPU" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="jpaDialect">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
+		</property>
+		<property name="jpaVendorAdapter">
+			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+				<property name="databasePlatform" value="org.hibernate.dialect.PostgreSQLDialect" />
+			</bean>
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<!-- Config C3P0 -->
+				<prop key="hibernate.c3p0.max_size">10</prop>
+				<prop key="hibernate.c3p0.min_size">2</prop>
+				<prop key="hibernate.c3p0.timeout">5000</prop>
+				<prop key="hibernate.c3p0.max_statements">50</prop>
+				<prop key="hibernate.c3p0.idle_test_period">3000</prop>
+				<prop key="hibernate.c3p0.acquire_increment">2</prop>
+				<!-- Config Hibernate -->
+				<prop key="hibernate.default_batch_fetch_size">10</prop>
+				<prop key="hibernate.generate_statistics">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+
+		</property>
+	</bean>
+	
+	<!-- use datasource -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property name="driverClass" value="org.postgresql.Driver" />
+		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/ENSALAMENTO" />
+		<property name="user" value="postgres" />
+		<property name="password" value="@rv0re24Xcv" />
+	</bean>
+
+	<!-- Use @Transaction annotations for managing transactions -->
+	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true" />
+
+	<!-- the transactional advice (what 'happens'; see the <aop:advisor/> bean  below) -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<!-- the transactional semantics... -->
+		<tx:attributes>
+			<!-- all methods starting with 'get' are read-only -->
+			<tx:method name="find*" read-only="true" />
+			<tx:method name="count*" read-only="true" />
+			<tx:method name="get*" read-only="true" />
+			<tx:method name="busca*" read-only="true" />
+			<tx:method name="lista*" read-only="true" />
+			<tx:method name="carrega*" read-only="true" />
+			<tx:method name="consult*" read-only="true" />
+			<!-- other methods use the default transaction settings (see below) -->
+			<tx:method name="*" propagation="REQUIRED" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- Configuração do Aspecto das transações. -->
+	<aop:config>
+		<aop:pointcut id="daoMethods" expression="execution(* br.ensalamento.persistence..*.*(..))" />
+		<aop:advisor order="2" advice-ref="txAdvice" pointcut-ref="daoMethods" />
+	</aop:config>
+</beans>
