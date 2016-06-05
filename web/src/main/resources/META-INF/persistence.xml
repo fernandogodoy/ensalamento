@@ -5,6 +5,7 @@
 
   <persistence-unit name="ensalamentoPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
   </persistence-unit>
 
 </persistence>

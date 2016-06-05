@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import org.springframework.stereotype.Repository;
+
 import br.ensalamento.domain.Professor;
 
+@Repository
 public class ProfessorDAOImpl extends GenericDAOImpl<Professor> implements ProfessorDAO {
 
 	public ProfessorDAOImpl() {

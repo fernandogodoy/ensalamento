@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+	<ui:define name="conteudo">
+
+		<h1>#{professorBean.nome}</h1>
+		<h:form>
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Nome" for="nome" />
+				<p:inputText id="nome" value="#{professorBean.professor.nome}" />
+
+				<p:outputLabel value="CPF" for="cpf" />
+				<p:inputMask mask="999.999.999-99" id="cpf"
+					value="#{professorBean.professor.cpf}" />
+
+				<p:outputLabel value="RG" for="rg" />
+				<p:inputMask mask="99.999.999-9" id="rg"
+					value="#{professorBean.professor.rg}" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="1">
+				<p:commandButton value="Salvar"
+					actionListener="#{professorBean.salvar}" />
+			</h:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
