@@ -8,11 +8,12 @@
 <ui:composition template="/template.xhtml">
 	<ui:define name="conteudo">
 
-		<h1>#{professorBean.nome}</h1>
-		<h:form>
+		<h1>Cadastro Professor</h1>
+		<h:form id="cadastroProfessor">
 			<h:panelGrid columns="2">
 				<p:outputLabel value="Nome" for="nome" />
-				<p:inputText id="nome" value="#{professorBean.professor.nome}" />
+				<p:inputText id="nome" value="#{professorBean.professor.nome}"
+					size="40" />
 
 				<p:outputLabel value="CPF" for="cpf" />
 				<p:inputMask mask="999.999.999-99" id="cpf"
@@ -22,12 +23,12 @@
 				<p:inputMask mask="99.999.999-9" id="rg"
 					value="#{professorBean.professor.rg}" />
 			</h:panelGrid>
-
-			<h:panelGrid columns="1">
-				<p:commandButton value="Salvar"
-					actionListener="#{professorBean.salvar}" />
-			</h:panelGrid>
 		</h:form>
+		<h:panelGrid columns="2">
+			<p:commandButton value="Salvar"
+				actionListener="#{professorBean.salvar}" update=":cadastroProfessor" />
+			<p:button value="Voltar" outcome="pesquisaProfessor" />
+		</h:panelGrid>
 	</ui:define>
 </ui:composition>
 </html>

@@ -33,7 +33,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	@Override
 	public void salvar(T objeto) {
 		
-		entityManager.persist(objeto);
+		entityManager.merge(objeto);
 
 	}
 

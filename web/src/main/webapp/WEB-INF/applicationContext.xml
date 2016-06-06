@@ -65,7 +65,7 @@
 		<property name="driverClass" value="org.postgresql.Driver" />
 		<property name="jdbcUrl" value="jdbc:postgresql://localhost:5432/ENSALAMENTO" />
 		<property name="user" value="postgres" />
-		<property name="password" value="@rv0re24Xcv" />
+		<property name="password" value="admin" />
 	</bean>
 
 	<!-- Use @Transaction annotations for managing transactions -->

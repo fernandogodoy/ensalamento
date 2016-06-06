@@ -1,12 +1,13 @@
 package br.ensalamento.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.ensalamento.domain.Professor;
 import br.ensalamento.persistence.ProfessorDAO;
@@ -19,6 +20,8 @@ public class ProfessorManagedBean {
 	private ProfessorDAO professorDAO;
 
 	private Professor professor;
+
+	private List<Professor> professores = new ArrayList<Professor>();
 
 	@PostConstruct
 	private void init() {
@@ -34,18 +37,15 @@ public class ProfessorManagedBean {
 		this.professor = professor;
 	}
 
-	private String nome = "Professor";
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
 	public void salvar() {
 		professorDAO.salvar(professor);
+		professor = new Professor();
+	}
+
+	@PostConstruct
+	public List<Professor> getProfessores() {
+		professores = professorDAO.findAll();
+		return professores;
 	}
 
 }

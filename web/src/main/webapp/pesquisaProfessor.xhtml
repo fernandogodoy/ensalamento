@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h1>Pesquisa Professor</h1>
+		<p:dataTable emptyMessage="Sem Registros para Visualizar."
+			value="#{professorBean.professores}" var="professor">
+
+			<p:column headerText="Nome" style="text-align: center;">
+				<h:outputText value="#{professor.nome}" />
+			</p:column>
+
+			<p:column headerText="Cpf" style="text-align: center;width:25%;">
+				<h:outputText value="#{professor.cpf}" />
+			</p:column>
+
+			<p:column headerText="RG" style="text-align: center;width:25%;">
+				<h:outputText value="#{professor.rg}" />
+			</p:column>
+
+			<f:facet name="footer">
+				<p:button value="Novo" outcome="cadastroProfessor" />
+			</f:facet>
+		</p:dataTable>
+	</ui:define>
+</ui:composition>
+</html>
