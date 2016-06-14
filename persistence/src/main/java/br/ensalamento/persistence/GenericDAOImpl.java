@@ -23,7 +23,7 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-
+	
 	@Override
 	public T getById(Long id) {
 		return entityManager.find(objeto, id);
@@ -32,26 +32,20 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	@Transactional
 	@Override
 	public void salvar(T objeto) {
-		
 		entityManager.merge(objeto);
-
 	}
-
+	@Transactional
 	@Override
 	public void update(T objeto) {
-		entityManager.getTransaction().begin();
 		entityManager.merge(objeto);
-		entityManager.getTransaction().commit();
 	}
-
+	@Transactional
 	@Override
 	public void excluir(T objeto) {
-		entityManager.getTransaction().begin();
 		entityManager.remove(objeto);
-		entityManager.getTransaction().commit();
 
 	}
-
+	@Transactional
 	@Override
 	public void excluir(Long id) {
 		excluir(getById(id));

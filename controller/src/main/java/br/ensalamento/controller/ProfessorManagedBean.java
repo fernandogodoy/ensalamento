@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,6 +47,20 @@ public class ProfessorManagedBean {
 	public List<Professor> getProfessores() {
 		professores = professorDAO.findAll();
 		return professores;
+	}
+
+	public void excluir(Professor professor){
+		professor = professorDAO.getById(professor.getId());
+		professorDAO.excluir(professor);
+	}
+	
+	public void editar(Professor professor) {
+		try {
+			this.professor = professor;
+			FacesContext.getCurrentInstance().getExternalContext().redirect("cadastroProfessor.xhtml");
+		} catch (Exception exception) {
+			System.err.println(exception);
+		}
 	}
 
 }
