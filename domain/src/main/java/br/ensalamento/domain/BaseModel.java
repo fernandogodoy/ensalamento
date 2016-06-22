@@ -1,9 +1,9 @@
 package br.ensalamento.domain;
 
 /**
- * Repesentação de um modelo base para entidades do sistema
+ * Repesentacao de um modelo base para entidades do sistema
  * 
- * @author Fernando Godóy
+ * @author Fernando Godoy
  *
  */
 public interface BaseModel {
