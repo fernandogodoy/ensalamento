@@ -13,20 +13,18 @@ public class MateriaDAOImpl extends GenericDAOImpl<Materia> implements MateriaDA
 		super(Materia.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Materia> consultar(String nome) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Materia o  WHERE UPPER(nome) like ?");
+		TypedQuery<Materia> query = getEntityManager().createQuery("SELECT o FROM Materia o  WHERE UPPER(nome) like ?",
+				Materia.class);
 		query.setParameter(1, '%' + nome.toUpperCase() + '%');
 		return query.getResultList();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Materia> consultar(AnoAtividade anoAtividade) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Materia o  WHERE anoAtividade = ?");
+		TypedQuery<Materia> query = getEntityManager().createQuery("SELECT o FROM Materia o  WHERE anoAtividade = ?",
+				Materia.class);
 		query.setParameter(1, anoAtividade);
 		return query.getResultList();
 	};

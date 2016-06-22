@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Curso implements Serializable {
+public class Curso implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,4 +30,9 @@ public class Curso implements Serializable {
 	@OneToMany(mappedBy = "curso", targetEntity = Turma.class, orphanRemoval=true)
 	private List<Turma> turmas = new ArrayList<Turma>();
 	
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

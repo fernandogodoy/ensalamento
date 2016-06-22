@@ -15,11 +15,10 @@ public class ProfessorDAOImpl extends GenericDAOImpl<Professor> implements Profe
 		super(Professor.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Professor> consultar(String nome) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Professor o  WHERE UPPER(nome) like ?");
+		TypedQuery<Professor> query =  getEntityManager()
+				.createQuery("SELECT o FROM Professor o  WHERE UPPER(nome) like ?", Professor.class);
 		query.setParameter(1, '%' + nome.toUpperCase() + '%');
 		return query.getResultList();
 	}

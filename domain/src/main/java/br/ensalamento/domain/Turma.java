@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Turma implements Serializable {
+public class Turma implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,4 +32,9 @@ public class Turma implements Serializable {
 
 	@OneToMany(mappedBy = "turma", targetEntity = Grade.class, orphanRemoval=true)
 	private List<Grade> grades = new ArrayList<Grade>();
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

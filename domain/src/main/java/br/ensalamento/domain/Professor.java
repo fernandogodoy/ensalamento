@@ -1,5 +1,6 @@
 package br.ensalamento.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Professor {
+public class Professor implements BaseModel, Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,15 +32,16 @@ public class Professor {
 	@Column(name = "RG", length = 15)
 	private String rg;
 
-	@OneToOne(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
-	private DisponibilidadeProfessor disponibilidadeProfessor;
+//	@OneToOne(mappedBy = "professor", cascade = CascadeType.ALL, orphanRemoval = true)
+//	private DisponibilidadeProfessor disponibilidadeProfessor;
+//
+//	@OneToMany(mappedBy = "professor", targetEntity = Grade.class, orphanRemoval = true)
+//	private List<Grade> grades = new ArrayList<Grade>();
+//
+//	@OneToMany(mappedBy = "professor", targetEntity = ProfessorMateria.class, orphanRemoval = true)
+//	private List<ProfessorMateria> professoresMaterias = new ArrayList<ProfessorMateria>();
 
-	@OneToMany(mappedBy = "professor", targetEntity = Grade.class, orphanRemoval = true)
-	private List<Grade> grades = new ArrayList<Grade>();
-
-	@OneToMany(mappedBy = "professor", targetEntity = ProfessorMateria.class, orphanRemoval = true)
-	private List<ProfessorMateria> professoresMaterias = new ArrayList<ProfessorMateria>();
-
+	@Override
 	public Long getId() {
 		return id;
 	}
@@ -66,28 +70,28 @@ public class Professor {
 		this.rg = rg;
 	}
 
-	public DisponibilidadeProfessor getDisponibilidadeProfessor() {
-		return disponibilidadeProfessor;
-	}
+//	public DisponibilidadeProfessor getDisponibilidadeProfessor() {
+//		return disponibilidadeProfessor;
+//	}
+//
+//	public void setDisponibilidadeProfessor(DisponibilidadeProfessor disponibilidadeProfessor) {
+//		this.disponibilidadeProfessor = disponibilidadeProfessor;
+//	}
+//
+//	public List<Grade> getGrades() {
+//		return grades;
+//	}
+//
+//	public void setGrades(List<Grade> grades) {
+//		this.grades = grades;
+//	}
+//
+//	public List<ProfessorMateria> getProfessoresMaterias() {
+//		return professoresMaterias;
+//	}
 
-	public void setDisponibilidadeProfessor(DisponibilidadeProfessor disponibilidadeProfessor) {
-		this.disponibilidadeProfessor = disponibilidadeProfessor;
-	}
-
-	public List<Grade> getGrades() {
-		return grades;
-	}
-
-	public void setGrades(List<Grade> grades) {
-		this.grades = grades;
-	}
-
-	public List<ProfessorMateria> getProfessoresMaterias() {
-		return professoresMaterias;
-	}
-
-	public void setProfessoresMaterias(List<ProfessorMateria> professoresMaterias) {
-		this.professoresMaterias = professoresMaterias;
-	}
+//	public void setProfessoresMaterias(List<ProfessorMateria> professoresMaterias) {
+//		this.professoresMaterias = professoresMaterias;
+//	}
 
 }

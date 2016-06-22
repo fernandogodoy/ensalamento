@@ -50,7 +50,6 @@ public class ProfessorManagedBean {
 	}
 
 	public void excluir(Professor professor){
-		professor = professorDAO.getById(professor.getId());
 		professorDAO.excluir(professor);
 	}
 	

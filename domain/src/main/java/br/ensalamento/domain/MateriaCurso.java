@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class MateriaCurso implements Serializable {
+public class MateriaCurso implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,5 +27,10 @@ public class MateriaCurso implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="ID_MATERIA")
 	private Materia materia;
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
 
 }

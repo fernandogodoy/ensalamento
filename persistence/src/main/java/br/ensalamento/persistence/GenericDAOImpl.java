@@ -8,13 +8,15 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.transaction.annotation.Transactional;
 
-public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
+import br.ensalamento.domain.BaseModel;
 
-	public GenericDAOImpl(Class<T> objeto) {
+public abstract class GenericDAOImpl<M extends BaseModel> implements GenericDAO<M> {
+
+	public GenericDAOImpl(Class<M> objeto) {
 		this.objeto = objeto;
 	}
 
-	private Class<T> objeto;
+	private Class<M> objeto;
 
 	@PersistenceContext
 	public EntityManager entityManager;
@@ -23,37 +25,44 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	public EntityManager getEntityManager() {
 		return entityManager;
 	}
-	
+
 	@Override
-	public T getById(Long id) {
+	public M getById(Long id) {
 		return entityManager.find(objeto, id);
 	}
 
-	@Transactional
 	@Override
-	public void salvar(T objeto) {
+	@Transactional
+	public void salvar(M objeto) {
 		entityManager.merge(objeto);
 	}
-	@Transactional
-	@Override
-	public void update(T objeto) {
-		entityManager.merge(objeto);
-	}
-	@Transactional
-	@Override
-	public void excluir(T objeto) {
-		entityManager.remove(objeto);
 
+	@Override
+	@Transactional
+	public void update(M objeto) {
+		if (null == objeto.getId()) {
+			entityManager.persist(objeto);
+		} else {
+			entityManager.merge(objeto);
+		}
 	}
+
+	@Transactional
+	@Override
+	public void excluir(M objeto) {
+		entityManager.remove(getById(objeto.getId()));
+	}
+
 	@Transactional
 	@Override
 	public void excluir(Long id) {
+		
 		excluir(getById(id));
 	}
 
 	@Override
-	public List<T> findAll() {
-		TypedQuery<T> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
+	public List<M> findAll() {
+		TypedQuery<M> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
 		return q.getResultList();
 	}
 

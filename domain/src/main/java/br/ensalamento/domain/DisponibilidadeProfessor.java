@@ -16,7 +16,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DISPONIBILIDADE_PROFESSOR")
-public class DisponibilidadeProfessor implements Serializable {
+public class DisponibilidadeProfessor implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,4 +33,8 @@ public class DisponibilidadeProfessor implements Serializable {
 	@JoinColumn(name="ID_PROFESSOR")
 	private Professor professor;
 
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

@@ -15,29 +15,26 @@ public class GradeDAOImpl extends GenericDAOImpl<Grade> implements GradeDAO {
 		super(Grade.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Grade> consultar(Professor professor) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Grade o  WHERE professor = ?");
+		TypedQuery<Grade> query = getEntityManager()
+				.createQuery("SELECT o FROM Grade o  WHERE professor = ?", Grade.class);
 		query.setParameter(1, professor);
 		return query.getResultList();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Grade> consultar(Materia materia) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Grade o  WHERE materia = ?");
+		TypedQuery<Grade> query = getEntityManager()
+				.createQuery("SELECT o FROM Grade o  WHERE materia = ?", Grade.class);
 		query.setParameter(1, materia);
 		return query.getResultList();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Grade> consultar(Turma turma) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Grade o  WHERE turma = ?");
+		TypedQuery<Grade> query = getEntityManager()
+				.createQuery("SELECT o FROM Grade o  WHERE turma = ?", Grade.class);
 		query.setParameter(1, turma);
 		return query.getResultList();
 	}

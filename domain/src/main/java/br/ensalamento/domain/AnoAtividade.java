@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public class AnoAtividade implements Serializable {
+public class AnoAtividade implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,4 +30,8 @@ public class AnoAtividade implements Serializable {
 	@OneToMany(mappedBy = "anoAtividade", targetEntity = Materia.class, orphanRemoval=true)
     private List<Materia> materias = new ArrayList<Materia>();
 
+	@Override
+	public Long getId() {
+		return id;
+	}
 }
