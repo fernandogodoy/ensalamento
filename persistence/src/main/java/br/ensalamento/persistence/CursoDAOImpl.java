@@ -15,12 +15,11 @@ public class CursoDAOImpl extends GenericDAOImpl<Curso> implements CursoDAO {
 		super(Curso.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Curso> consultar(String nome) {
 
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Curso o  WHERE UPPER(nome) " + "like ? ");
+		TypedQuery<Curso> query = getEntityManager()
+				.createQuery("SELECT o FROM Curso o  WHERE UPPER(nome) " + "like ? ", Curso.class);
 		query.setParameter(1, "%" + nome.toUpperCase() + "%");
 		return query.getResultList();
 	}

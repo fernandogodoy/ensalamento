@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Grade implements Serializable {
+public class Grade implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -38,4 +38,9 @@ public class Grade implements Serializable {
 	@JoinColumn(name="ID_PROFESSOR")
 	private Professor professor;
 	
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

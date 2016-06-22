@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Materia implements Serializable {
+public class Materia implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,4 +39,9 @@ public class Materia implements Serializable {
 	@OneToMany(mappedBy = "materia", targetEntity = ProfessorMateria.class, orphanRemoval=true)
 	private List<ProfessorMateria> professoresMaterias = new ArrayList<ProfessorMateria>();
 
+	
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

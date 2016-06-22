@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/template.xhtml">
+
+	<ui:define name="conteudo">
+		<h1>Pesquisa Professor</h1>
+		<h:form>
+			<p:dataTable id="tabelaProfessor" emptyMessage="Sem Registros para Visualizar."
+				value="#{professorBean.professores}" var="professor">
+
+				<p:column headerText="Nome" style="text-align: center;">
+					<h:outputText value="#{professor.nome}" />
+				</p:column>
+
+				<p:column headerText="Cpf" style="text-align: center;width:25%;">
+					<h:outputText value="#{professor.cpf}" />
+				</p:column>
+
+				<p:column headerText="RG" style="text-align: center;width:25%;">
+					<h:outputText value="#{professor.rg}" />
+				</p:column>
+
+				<p:column headerText="Opções" style="text-align: center;width:25%;">
+					<p:commandButton value="Editar" action="#{professorBean.editar(professor)}" />
+					<p:commandButton value="Excluir" action="#{professorBean.excluir(professor)}" 
+					update="tabelaProfessor"/>
+				</p:column>
+
+				<f:facet name="footer">
+					<p:button value="Novo" outcome="cadastroProfessor" />
+				</f:facet>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -12,9 +12,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class DisponibilidadeProfessor implements Serializable {
+@Table(name = "DISPONIBILIDADE_PROFESSOR")
+public class DisponibilidadeProfessor implements Serializable, BaseModel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,4 +33,8 @@ public class DisponibilidadeProfessor implements Serializable {
 	@JoinColumn(name="ID_PROFESSOR")
 	private Professor professor;
 
+	@Override
+	public Long getId() {
+		return id;
+	}
 }

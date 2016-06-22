@@ -12,11 +12,10 @@ public class TurmaDAOImpl extends GenericDAOImpl<Turma> implements TurmaDAO {
 		super(Turma.class);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
 	public List<Turma> consultar(String descricao) {
-		TypedQuery query = (TypedQuery) getEntityManager()
-				.createQuery("SELECT o FROM Turma o  WHERE UPPER(descricao) like ?");
+		TypedQuery<Turma> query = getEntityManager()
+				.createQuery("SELECT o FROM Turma o  WHERE UPPER(descricao) like ?", Turma.class);
 		query.setParameter(1, '%' + descricao.toUpperCase() + '%');
 		return query.getResultList();
 	}

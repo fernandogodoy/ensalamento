@@ -46,5 +46,9 @@
 			<artifactId>controller</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>all-themes</artifactId>
+		</dependency>
 	</dependencies>
 </project>

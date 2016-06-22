@@ -4,20 +4,22 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-public interface GenericDAO<T> {
+import br.ensalamento.domain.BaseModel;
 
-	T getById(Long id);
+public interface GenericDAO<M extends BaseModel> {
 
-	void salvar(T objeto);
+	M getById(Long id);
 
-	void excluir(T objeto);
+	void salvar(M objeto);
+
+	void excluir(M objeto);
 	
 	void excluir(Long id);
 	
-	void update(T objeto);
+	void update(M objeto);
 	
 	EntityManager getEntityManager();
 
-	List<T> findAll();
+	List<M> findAll();
 
 }

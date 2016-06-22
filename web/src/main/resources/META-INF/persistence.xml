@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<persistence version="1.0" xmlns="http://java.sun.com/xml/ns/persistence"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+<persistence version="1.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
 
-  <persistence-unit name="ensalamentoPU" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.ejb.HibernatePersistence</provider>
-  </persistence-unit>
+	<persistence-unit name="ensalamentoPU" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>br.ensalamento.domain.Professor</class>
+		<class>br.ensalamento.domain.DisponibilidadeProfessor</class>
+		<class>br.ensalamento.domain.Grade</class>
+		<class>br.ensalamento.domain.AnoAtividade</class>
+		<class>br.ensalamento.domain.Curso</class>
+		<class>br.ensalamento.domain.DiasSemana</class>
+		<class>br.ensalamento.domain.Materia</class>
+		<class>br.ensalamento.domain.MateriaCurso</class>
+		<class>br.ensalamento.domain.ProfessorMateria</class>
+		<class>br.ensalamento.domain.Turma</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+	</persistence-unit>
 
 </persistence>

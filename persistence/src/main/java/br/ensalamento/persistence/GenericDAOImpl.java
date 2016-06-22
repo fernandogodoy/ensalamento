@@ -6,13 +6,17 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
-public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
+import org.springframework.transaction.annotation.Transactional;
 
-	public GenericDAOImpl(Class<T> objeto) {
+import br.ensalamento.domain.BaseModel;
+
+public abstract class GenericDAOImpl<M extends BaseModel> implements GenericDAO<M> {
+
+	public GenericDAOImpl(Class<M> objeto) {
 		this.objeto = objeto;
 	}
 
-	private Class<T> objeto;
+	private Class<M> objeto;
 
 	@PersistenceContext
 	public EntityManager entityManager;
@@ -23,41 +27,42 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
 	}
 
 	@Override
-	public T getById(Long id) {
+	public M getById(Long id) {
 		return entityManager.find(objeto, id);
 	}
 
 	@Override
-	public void salvar(T objeto) {
-		entityManager.getTransaction().begin();
-		entityManager.persist(objeto);
-		entityManager.getTransaction().commit();
-
-	}
-
-	@Override
-	public void update(T objeto) {
-		entityManager.getTransaction().begin();
+	@Transactional
+	public void salvar(M objeto) {
 		entityManager.merge(objeto);
-		entityManager.getTransaction().commit();
 	}
 
 	@Override
-	public void excluir(T objeto) {
-		entityManager.getTransaction().begin();
-		entityManager.remove(objeto);
-		entityManager.getTransaction().commit();
-
+	@Transactional
+	public void update(M objeto) {
+		if (null == objeto.getId()) {
+			entityManager.persist(objeto);
+		} else {
+			entityManager.merge(objeto);
+		}
 	}
 
+	@Transactional
+	@Override
+	public void excluir(M objeto) {
+		entityManager.remove(getById(objeto.getId()));
+	}
+
+	@Transactional
 	@Override
 	public void excluir(Long id) {
+		
 		excluir(getById(id));
 	}
 
 	@Override
-	public List<T> findAll() {
-		TypedQuery<T> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
+	public List<M> findAll() {
+		TypedQuery<M> q = entityManager.createQuery(" FROM " + this.objeto.getSimpleName(), this.objeto);
 		return q.getResultList();
 	}
 
